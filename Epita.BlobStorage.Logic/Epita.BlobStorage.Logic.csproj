@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Epita.BlobStorage.Logic.Contracts\Epita.BlobStorage.Logic.Contracts.csproj" />
+    <ProjectReference Include="..\Epita.BlobStorage.Services.Contracts\Epita.BlobStorage.Services.Contracts.csproj" />
+  </ItemGroup>
+
+</Project>

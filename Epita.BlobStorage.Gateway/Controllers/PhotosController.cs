@@ -78,6 +78,21 @@ namespace Epita.BlobStorage.Gateway.Controllers
             return Ok(photo);
         }
 
+        [HttpDelete("{photoId}")]
+        public async Task<IActionResult> DeleteByIdAsync(string photoId)
+        {
+            string userId = HttpContext.User.Identity.Name;
+
+            bool success = await photoLogic.DeleteByIdAsync(userId, photoId);
+
+            if (!success)
+            {
+                return BadRequest();
+            }
+
+            return NoContent();
+        }
+
         [HttpPut("{photoId}/tags")]
         public async Task<IActionResult> AddTagsIdAsync(string photoId, [FromBody] IEnumerable<string> tags)
         {

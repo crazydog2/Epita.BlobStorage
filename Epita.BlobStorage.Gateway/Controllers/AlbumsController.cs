@@ -50,6 +50,21 @@ namespace Epita.BlobStorage.Gateway.Controllers
             return Ok(album);
         }
 
+        [HttpDelete("{albumId}")]
+        public async Task<IActionResult> DeleteByIdAsync(string albumId)
+        {
+            string userId = HttpContext.User.Identity.Name;
+
+            bool success = await albumLogic.DeleteByIdAsync(userId, albumId);
+
+            if (!success)
+            {
+                return BadRequest();
+            }
+
+            return NoContent();
+        }
+
         [HttpGet]
         public async Task<IActionResult> GetAsync()
         {

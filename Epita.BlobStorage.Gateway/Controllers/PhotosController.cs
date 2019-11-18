@@ -31,7 +31,7 @@ namespace Epita.BlobStorage.Gateway.Controllers
 
             string filename = file.FileName;
 
-            string photoId = await photoLogic.UploadAsync(stream, filename, userId).ConfigureAwait(false);
+            string photoId = await photoLogic.UploadAsync(stream, userId, filename).ConfigureAwait(false);
 
             if (!string.IsNullOrEmpty(photoId))
             {

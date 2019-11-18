@@ -78,6 +78,21 @@ namespace Epita.BlobStorage.Gateway.Controllers
             return Ok(photo);
         }
 
+        [HttpPut("{photoId}/tags")]
+        public async Task<IActionResult> AddTagsIdAsync(string photoId, [FromBody] IEnumerable<string> tags)
+        {
+            string userId = HttpContext.User.Identity.Name;
+
+            bool success = await photoLogic.AddOrUpdateTagsAsync(userId, photoId, tags);
+
+            if (!success)
+            {
+                return BadRequest();
+            }
+
+            return NoContent();
+        }
+
         [HttpGet("{photoId}/download")]
         public async Task<IActionResult> DownloadByIdAsync(string photoId)
         {
